@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- content라는 템플릿을 block과 endblock 사이에 정의하여 사용이 가능함 -->
+
+    <form id="addForm" action="/add" method="post">
+        <textarea name="task" rows="5" placeholder="할 일을 등록 해주세요"></textarea>
+        <button type="submit">Add</button>
+    </form>
+
+    <br>
+    <h2>오늘 할 일</h2>
+
+    <div class="todoWrap">
+        {% for todo in todos %}
+            <div class="task">
+                <div>
+                    {% if todo.completed %}
+                        <s>{{ todo.task }}</s>  <!--완료 체크시 줄긋기-->
+                    {% else %}
+                        {{ todo.task }}
+                    {% endif %}
+                </div>
+                <small>
+                    <a href="change/{{ todo.id }}">완료</a>
+                    <a href="edit/{{ todo.id }}">수정</a>
+                    <a href="delete/{{ todo.id }}">삭제</a>
+                </small>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

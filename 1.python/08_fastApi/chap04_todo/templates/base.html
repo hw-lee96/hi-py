@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO 리스트</title>
+</head>
+<style>
+    body {
+        text-align: center;
+        background: #352F5B;
+    }
+    body * {
+        color: white;
+    }
+    #addForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #addForm textarea {
+        background: #2A2649;
+        color: white;
+        width: 300px;
+        border-radius: 5px;
+        border: 0px;
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+        resize: none;
+    }
+    #addForm button {
+        width: 200px;
+        height: 30px;
+        border-radius: 5px;
+        margin-top: 15px;
+        color: #2A2649;
+        font-size: 15px;
+        font-weight: 700;
+    }
+    .todoWrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .task {
+        display: flex;
+        width: 500px;
+        height: 30px;
+        margin: 5px;
+        background: #423A6F;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+    }
+    .task > div {
+        flex: 9;
+        margin-right: 8px;
+        background: #352F5B;
+        border-radius: 5px;
+    }
+    .task > small > a {
+        text-decoration: none;
+    }
+    
+</style>
+<body>
+    <main>
+        <h1>ToDo 리스트 작성</h1>
+        <br>
+        {% block content %}
+        
+        {% endblock content %}
+    </main>
+</body>
+</html>
+<!-- jinja 에서 제공해주는 문법 -->
