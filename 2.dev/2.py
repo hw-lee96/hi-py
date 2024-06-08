@@ -4,6 +4,8 @@ import cv2
 from mediapipe import solutions
 from mediapipe.framework.formats import landmark_pb2
 import numpy as np
+import os
+path = os.path.dirname(os.path.realpath(__file__))
 
 def draw_landmarks_on_image(rgb_image, detection_result):
   pose_landmarks_list = detection_result.pose_landmarks
@@ -31,14 +33,14 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
 # STEP 2: Create an PoseLandmarker object.
-base_options = python.BaseOptions(model_asset_path='models\pose_landmarker_lite.task')
+base_options = python.BaseOptions(model_asset_path=f'{path}\models\pose_landmarker_lite.task')
 options = vision.PoseLandmarkerOptions(
     base_options=base_options,
     output_segmentation_masks=True)
 detector = vision.PoseLandmarker.create_from_options(options)
 
 # STEP 3: Load the input image.
-image = mp.Image.create_from_file("girl-4051811_960_720.jpg")
+image = mp.Image.create_from_file(f'{path}\girl-4051811_960_720.jpg')
 
 # STEP 4: Detect pose landmarks from the input image.
 detection_result = detector.detect(image)

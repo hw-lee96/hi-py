@@ -2,13 +2,14 @@ from typing import Tuple, Union
 import math
 import cv2
 import numpy as np
+import os
+path = os.path.dirname(os.path.realpath(__file__))
 
 MARGIN = 10  # pixels
 ROW_SIZE = 10  # pixels
 FONT_SIZE = 1
 FONT_THICKNESS = 1
 TEXT_COLOR = (255, 0, 0)  # red
-
 
 def _normalized_to_pixel_coordinates(
     normalized_x: float, normalized_y: float, image_width: int,
@@ -77,12 +78,12 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
 # STEP 2: Create an FaceDetector object.
-base_options = python.BaseOptions(model_asset_path='models\\blaze_face_short_range copy.tflite')
+base_options = python.BaseOptions(model_asset_path=f'{path}\models\\blaze_face_short_range copy.tflite')
 options = vision.FaceDetectorOptions(base_options=base_options)
 detector = vision.FaceDetector.create_from_options(options)
 
 # STEP 3: Load the input image.
-image = mp.Image.create_from_file('Vu2Nqwb.jpeg')
+image = mp.Image.create_from_file(f'{path}\Vu2Nqwb.jpeg')
 
 # STEP 4: Detect faces in the input image.
 detection_result = detector.detect(image)

@@ -6,6 +6,8 @@ from mediapipe import solutions
 from mediapipe.framework.formats import landmark_pb2
 import numpy as np
 import time
+import os
+path = os.path.dirname(os.path.realpath(__file__))
 
 rendered_image = None
 MARGIN = 10  # pixels
@@ -56,7 +58,7 @@ def print_result(result: mp.tasks.vision.HandLandmarkerResult, output_image: mp.
     rendered_image = draw_landmarks_on_image(output_image.numpy_view(), result)
 
 options = mp.tasks.vision.HandLandmarkerOptions(
-    base_options = mp.tasks.BaseOptions(model_asset_path='models\\hand_landmarker.task'),
+    base_options = mp.tasks.BaseOptions(model_asset_path=f'{path}\models\\hand_landmarker.task'),
     running_mode = mp.tasks.vision.RunningMode.LIVE_STREAM,
     num_hands = 2, # 감지하는 손의 개수
     result_callback = print_result)
