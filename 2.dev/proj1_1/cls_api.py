@@ -67,8 +67,13 @@ async def create_upload_file(file: UploadFile):
 
     # STEP 5: 추론 결과 내용 후처리
     # - classifications : 요청한 사진들 자체의 추론 결과를 가지고 있는 배열. 여러장을 요청하는 경우 인덱스로 접근
-    top_category = classification_result.classifications[0].categories[0]
-    return {'category_name': top_category.category_name, 'percentage' : f'{top_category.score * 100:.2f}%',"file_size": len(byte_file)}
+    top_category = classification_result.classifications[0].categories
+    result = []
+    for item in top_category:
+        result.append({ 'category_name': item.category_name, 'percentage' : f'{item.score * 100:.2f}%' })
+
+    # return {'category_name': top_category.category_name, 'percentage' : f'{top_category.score * 100:.2f}%',"file_size": len(byte_file)}
+    return result
 
 if __name__ == '__main__':
     uvicorn.run('cls_api:app', port = 8001, reload = True)
